@@ -3,7 +3,8 @@ name: Bakalari-Schedule-Watcher
 on:
     schedule:
         # Times are in UTC (Coordinated Universal Time).
-        - cron: "0,30 4,5 * * 1-5"
+        - cron: "0,45 4 * * 1-5"
+        - cron: "30 5 * * 1-5"
 
     # Test trigger for manual runs in GitHub Actions UI.
     workflow_dispatch:
