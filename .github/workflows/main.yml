@@ -1,0 +1,32 @@
+name: Bakalari-Schedule-Watcher
+
+on:
+    schedule:
+        # Times are in UTC (Coordinated Universal Time).
+        - cron: "0,30 4,5 * * 1-5"
+
+    # Test trigger for manual runs in GitHub Actions UI.
+    workflow_dispatch:
+
+jobs:
+    run-watcher:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Run script
+              env:
+                  BAKALARI_URL: ${{ secrets.BAKALARI_URL }}
+                  BAKALARI_USERNAME: ${{ secrets.BAKALARI_USERNAME }}
+                  BAKALARI_PASSWORD: ${{ secrets.BAKALARI_PASSWORD }}
+                  NTFY_CHANNEL: ${{ secrets.NTFY_CHANNEL }}
+              run: node app.js
