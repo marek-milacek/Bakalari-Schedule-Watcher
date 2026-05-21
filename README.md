@@ -35,10 +35,20 @@ NTFY_CHANNEL=your_ntfy_channel
 
 ## Usage
 
-Run the watcher manually:
+To run the watcher manually, first compile the TypeScript code and then start the application:
 
 ```bash
-node app.js
+# Build the TypeScript project
+npm run build
+
+# Start the application
+npm start
+```
+
+Alternatively, you can run the development command which builds and starts the application in one step:
+
+```bash
+npm run dev
 ```
 
 If the app finds cancelled lessons for today, it will send a notification to your ntfy channel.
@@ -70,7 +80,7 @@ bakalari_example_channel
 
 ## GitHub Actions
 
-This project already includes a workflow that runs `node app.js` on a schedule. Use GitHub Secrets for:
+This project already includes a GitHub Actions workflow that automatically builds and runs the script on a schedule. You need to configure the following GitHub Secrets:
 
 - `BAKALARI_URL`
 - `BAKALARI_USERNAME`
